@@ -4,28 +4,32 @@
     <head>
         <meta charset="utf-8">
         <title>VueJS: Componentes</title>
-        <meta name="author" content="">
-        <meta name="description" content="">
+        <meta name="author" content="Víctor Sánchez">
+        <meta name="description" content="Practica VueJS">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- TODO: Cargar CSS Bootstrap (no es necesario el JS) -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     </head>
 
     <body>
-
-        <h1 id="autor">Autor: TU NOMBRE AQUÍ</h1>
+        <h1 id="autor">Autor: Víctor Carlos Sánchez Socorro</h1>
 
         <!-- https://vuejs.org/v2/guide/index.html -->
         <div id="app">
-            <!--
-                 TODO: Aplicación VueJS. Ver archivo ./js/script.js
-               - Mostrar el título de la colección dentro de un componente Jumbotron de Bootstrap https://getbootstrap.com/docs/4.0/components/jumbotron/. En su interior habrá un <h1> con id "title" que mostrará el título de la colección
-               - Para cada item: (https://vuejs.org/v2/guide/index.html#Conditionals-and-Loops)
-                 - Crear un componente item-data
-            -->
-
+            <div class="jumbotron">
+                <h1 class="display-4" id="title">{{col.collection.title}}</h1>
+            </div>   
+            <div class="card-group">
+                <div class="card" v-for="item in col.collection.items">
+                    <div class="card-body" v-for="peli in item.data">
+                        <dl>
+                            <dt class="card-title">{{peli.prompt}}</dt>
+                            <dd>{{peli.value}}</dd>
+                        </dl>
+                    </div>
+                    <a v-bind:href="item.href" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
         </div>
-
-
 
         <!-- Plantilla para el componente edit-form -->
         <script type="text/x-template" id="editForm">
@@ -36,8 +40,6 @@
 
         </script>
 
-
-
         <!-- Plantilla para el componente item-data -->
         <script type="text/x-template" id="itemData">
 
@@ -47,9 +49,7 @@
 
         </script>
 
-
-        <!-- TODO: Cargar librería VueJS y archivo js/script.js -->
-
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="./js/script.js"></script>
     </body>
-
 </html>

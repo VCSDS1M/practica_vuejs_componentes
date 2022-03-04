@@ -51,7 +51,29 @@ Vue.component('edit-form', {
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-
+    data: function  () {
+        return{
+            datos: true,
+            edicion: false,
+        }         
+    },
+    
+    props: ["item"],
+    
+    methods: {
+        toggleEditFormVisibility()
+        {
+            this.datos = false;
+            this.edicion = true;
+        },
+        formClose()
+        {
+            this.datos = true;
+            this.edicion = false;
+        }
+    },
+    
+    template : '#itemData'
 })
 
 // Aplicación VueJS

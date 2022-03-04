@@ -26,11 +26,30 @@
 
         <!-- Plantilla para el componente item-data -->
         <script type="text/x-template" id="itemData">
+            <div class="card" >
+                <div class="card-body" v-show="datos">
+                    <dl v-for="d in item.data" :itemdata="d">
+                        <dt>{{d.prompt}}</dt>
+                        <dd>{{d.value}}</dd>       
+                    </dl>
 
-            <!--
-                 TODO: Componente item-data
-            -->
+                    <a class="btn btn-primary" v-bind:href="item.href" role="button">Ver</a>
 
+                    <button class="btn btn-secondary"  v-on:click="toggleEditFormVisibility" >Editar</button>
+                </div>
+
+                <div class="card-body " v-show="edicion">
+                    <dl v-for="d in item.data">
+                        <dd>{{d.prompt}}</dd>
+
+                        <input v-if="d.prompt != 'Description'" v-model="d.value" type="text">
+
+                        <textarea v-else v-model="d.value" type="text"></textarea>
+                    </dl>
+
+                    <button class="btn btn-primary"  v-on:click="formClose">Cerrar</button>
+                </div>
+            </div>
         </script>
 
         <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
